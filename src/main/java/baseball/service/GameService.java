@@ -11,6 +11,7 @@ public class GameService {
         data.setInput(Console.readLine());
         judge(data);
         System.out.println(printStrike(data)+printBall(data)+printNothing(data));
+        resetGameData(data);
         if(data.getStrike() == 3){
             endGame(data);
             return;
@@ -27,6 +28,13 @@ public class GameService {
             inGame(data);
         }
         return;
+    }
+
+    public void resetGameData(GameData data){
+        data.setBall(0);
+        data.setStrike(0);
+        data.setOut(0);
+        data.setInput("");
     }
 
 
