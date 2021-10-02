@@ -68,14 +68,14 @@ public class GameService {
         if(data.getStrike() == 0){
             return "";
         }
-        return Integer.toString(data.getStrike()) + " 스트라이트 ";
+        return Integer.toString(data.getStrike()) + "스트라이트 ";
     }
 
     public String printBall(GameData data){
         if(data.getBall() == 0){
             return "";
         }
-        return Integer.toString(data.getBall()) + " 볼 ";
+        return Integer.toString(data.getBall()) + "볼 ";
    }
 
    public String printNothing(GameData data){
