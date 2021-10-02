@@ -11,16 +11,17 @@ public class GameService {
         data.setInput(Console.readLine());
         judge(data);
         System.out.println(printStrike(data)+printBall(data)+printNothing(data));
-        resetGameData(data);
         if(data.getStrike() == 3){
             endGame(data);
             return;
         }
+        resetGameData(data);
         inGame(data);
         return;
     }
 
     public void endGame(GameData data){
+        resetGameData(data);
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 ");
         data.setNextGame(Console.readLine());
@@ -80,10 +81,13 @@ public class GameService {
     private void ballOrStrike(GameData data, int pos){
         if(isStrike(data,pos) == 1){
             data.setStrike(data.getStrike()+1);
+            return;
         }
         if(isBall(data, pos) == 1){
             data.setBall(data.getBall()+1);
+            return;
         }
+        return;
     }
 
     private int isBall(GameData data, int pos){
