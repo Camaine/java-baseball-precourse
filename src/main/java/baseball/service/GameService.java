@@ -1,14 +1,14 @@
 package baseball.service;
 
 import baseball.model.GameData;
+import baseball.view.GameView;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
 public class GameService {
 
     public void inGame(GameData data){
-        System.out.print("숫자를 입력해주세요 : ");
-        data.setInput(Console.readLine());
+        data.setInput(GameView.reqUserGuessInput());
         judge(data);
         isGameComplete(data);
     }
@@ -36,9 +36,7 @@ public class GameService {
 
     public void endGame(GameData data){
         resetGameData(data);
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 ");
-        data.setNextGame(Console.readLine());
+        data.setNextGame(GameView.reqUserGameEndInput());
         if(data.getNextGame().equals("1")){
             data.setAnswer(setRandomAnswer());
             inGame(data);
@@ -88,13 +86,13 @@ public class GameService {
     private void judge(GameData data){
         resetGameData(data);
         if(identifyWrongInput(data) == 1){
-            System.out.println("[ERROR]");
+            GameView.rspWrongInputError();
             return;
         }
         for(int i = 0 ; i < 3 ; i++){
             ballOrStrike(data,i);
         }
-        System.out.println(printStrike(data)+" "+printBall(data)+printNothing(data));
+        GameView.rspUserInputResult(printStrike(data)+" "+printBall(data)+printNothing(data));
     }
 
     private void ballOrStrike(GameData data, int pos){
