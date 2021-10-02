@@ -68,14 +68,14 @@ public class GameService {
         if(data.getStrike() == 0){
             return "";
         }
-        return Integer.toString(data.getStrike()) + " 스트라이트 ";
+        return Integer.toString(data.getStrike()) + "스트라이크";
     }
 
     public String printBall(GameData data){
         if(data.getBall() == 0){
             return "";
         }
-        return Integer.toString(data.getBall()) + " 볼 ";
+        return Integer.toString(data.getBall()) + "볼";
    }
 
    public String printNothing(GameData data){
@@ -94,7 +94,7 @@ public class GameService {
         for(int i = 0 ; i < 3 ; i++){
             ballOrStrike(data,i);
         }
-        System.out.println(printStrike(data)+printBall(data)+printNothing(data));
+        System.out.println(printStrike(data)+" "+printBall(data)+printNothing(data));
     }
 
     private void ballOrStrike(GameData data, int pos){
