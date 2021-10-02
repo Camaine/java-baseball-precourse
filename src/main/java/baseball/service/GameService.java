@@ -10,14 +10,28 @@ public class GameService {
         System.out.print("숫자를 입력해주세요 : ");
         data.setInput(Console.readLine());
         judge(data);
-        System.out.println(printStrike(data)+printBall(data)+printNothing(data));
+        isGameComplete(data);
+    }
+
+    public int identifyWrongInput(GameData data){
+        int input = 0;
+        try{
+            input = Integer.parseInt(data.getInput());
+        }catch (Exception e){
+            return 1;
+        }
+        if(input > 100 && input < 1000 && data.getInput().length() == 3){
+            return 0;
+        }
+        return 1;
+    }
+
+    public void isGameComplete(GameData data){
         if(data.getStrike() == 3){
             endGame(data);
             return;
         }
-        resetGameData(data);
         inGame(data);
-        return;
     }
 
     public void endGame(GameData data){
@@ -29,14 +43,12 @@ public class GameService {
             data.setAnswer(setRandomAnswer());
             inGame(data);
         }
-        return;
     }
 
     public void resetGameData(GameData data){
         data.setBall(0);
         data.setStrike(0);
         data.setOut(0);
-        data.setInput("");
     }
 
 
@@ -74,9 +86,15 @@ public class GameService {
    }
 
     private void judge(GameData data){
+        resetGameData(data);
+        if(identifyWrongInput(data) == 1){
+            System.out.println("[ERROR]");
+            return;
+        }
         for(int i = 0 ; i < 3 ; i++){
             ballOrStrike(data,i);
         }
+        System.out.println(printStrike(data)+printBall(data)+printNothing(data));
     }
 
     private void ballOrStrike(GameData data, int pos){
