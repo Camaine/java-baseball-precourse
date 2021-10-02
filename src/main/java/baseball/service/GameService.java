@@ -25,7 +25,8 @@ public class GameService {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 ");
         data.setNextGame(Console.readLine());
-        if(data.getNextGame() == "1"){
+        if(data.getNextGame().equals("1")){
+            data.setAnswer(setRandomAnswer());
             inGame(data);
         }
         return;

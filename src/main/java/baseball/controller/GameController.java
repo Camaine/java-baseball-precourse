@@ -10,6 +10,5 @@ public class GameController {
         GameService service = new GameService();
         data.setAnswer(service.setRandomAnswer());
         service.inGame(data);
-        //System.out.println(data.getAnswer());
     }
 }
